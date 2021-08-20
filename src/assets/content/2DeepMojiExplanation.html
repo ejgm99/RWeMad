@@ -1,0 +1,65 @@
+<p align="left">So, how does something like this get created? At this point it seems fun to just shove some data in your face so you see how this was defined. This is what gets spitted out when you have the DeepMoji model (implemented with Keras) spit out a summary of itself: </p>
+
+<table style="width:100%">
+	<tr>
+		<th> Layer Name (Keras Layer Type) </th>
+		<th> Output Shape </th>
+		<th> Connected to </th>
+	</tr>
+	<tr>
+		<td> input (InputLayer) </td>
+		<td>  (None,30) </td>
+		<td> none </td>
+	</tr>
+	<tr>
+		<td> embedding (Embedding) </td>
+		<td>  (None,30,256) </td>
+		<td> input </td>
+	</tr>
+	<tr>
+		<td> activation (Activation) </td>
+		<td>  (None,30,256) </td>
+		<td> embedding </td>
+	</tr>
+	<tr>
+		<td> bi_lstm_0 (Bidirectional) </td>
+		<td>  (None,30,1024) </td>
+		<td> activation </td>
+	</tr>
+	<tr>
+		<td> bi_lstm_1 (Bidirectional) </td>
+		<td>  (None,30,1024) </td>
+		<td> bi_lstm_0 </td>
+	</tr>
+	<tr>
+		<td> concatenate (Concatenate) </td>
+		<td>  (None,30,2304) </td>
+		<td> bi_lstm_0, bi_lstm_1, activation </td>
+	</tr>
+	<tr>
+		<td> attlayer (Attention Weighted Average) </td>
+		<td>  (None,2304) </td>
+		<td> concatenate </td>
+	</tr>
+	<tr>
+		<td> softmax (Dense) </td>
+		<td>  (None,64) </td>
+		<td> attlayer </td>
+	</tr>
+
+
+
+</table>
+
+	<p align = "left">
+		So this is how the DeepMoji model works in it's base form. It's a series of matrix operations that turns messy words into a list of emojis, or if you want to put it in fancy linear algebra terms, maps any given phrase into DeepMoji's 64 dimensional emotion space. The number 64 is only significant because that is how many labels were used to train the model. In natural language processing, their is a huge amount of data (i.e examples of people using words to communicate their thoughts) that if you can label, can get you a really well trained model. So what Bjarke et al did was treat emoji's as labels for 1.3 billion examples of human sentiment of Twitter (aka, Tweets). As a result, we have models such as this.
+	</p>
+
+<h2>
+	Preparing Words for Linear Algebra
+</h2>
+
+	<p>
+		This is the first step in any natural language processing project, and the one I'm going to spend the least amount of time on. This is because there is a trove of materials on Medium, Towards Data Science, etc that are already very well documented. All I will really say here is that the process of transforming each word to sentences is called tokenization. And there is a lot of ways to tokenize a sentence. All of these depend on the vocabulary size (i.e all of the words used in the training dataset), to see how their data representation works. But still tokenization is the first part of how any natural language processing workflow. Typically, each word is represented as a one-hot vector. This is a vector of a dimension the size of the vocabulary of the data set.
+	</p>
+
