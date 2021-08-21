@@ -26,7 +26,7 @@
 
 <script>
 
-var base_url = 'http://127.0.0.1:8001/nlp/';
+var base_url = 'http://ec2-3-136-18-160.us-east-2.compute.amazonaws.com/nlp/';
 
   export default {
     props:{

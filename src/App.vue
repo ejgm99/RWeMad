@@ -1,8 +1,8 @@
 <template>
   <div id="app">
 
-    <equation :latex = "'f=\\frac{b_i}{1+x}'"> </equation>
-
+<!--     <equation :latex = "'f=\\frac{b_i}{1+x}'"> </equation>
+ -->
     <passage :title="'Introduction'" :body="Content[0]"> </passage>
 
     <deepmoji></deepmoji>
