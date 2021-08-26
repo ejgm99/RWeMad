@@ -3,72 +3,49 @@
 
 <!--     <equation :latex = "'f=\\frac{b_i}{1+x}'"> </equation>
  -->
-    <passage :title="'Introduction'" :body="Content[0]"> </passage>
+    <router-link to="/">Home</router-link>
+    <router-link to="/deepmoji">Go to DeepMoji explanation (under construction)</router-link>
+    <router-view>
 
-    <deepmoji></deepmoji>
-
-    <passage :title="'The DeepMoji Model'" :body="Content[1]"></passage>
-
-    <tokenization></tokenization>
-<!--     <img alt="Vue logo" src="./assets/content/img/deepmoji_summary.png"> -->
-    <equation :latex= 
-    "`\\begin{bmatrix} 1  \\\\ \\vdots \\\\ 10000  \\end{bmatrix}`"
-    > </equation>
-
-    <passage :title="'Tokenization'" :body="Content[2]"></passage>
-    <passage :title="'Embedding'" :body="Content[3]"></passage>
-
-    <passage :title="'Long Short Term Memory'" :body="Content[4]"></passage>
+    </router-view>
 
    </div>
 
 </template>
 
 <script>
-import uniqueID from 'lodash.uniqueid'
-import Equation from './components/Equation.vue'
-import Passage from './components/Passage.vue'
-import Deepmoji from './components/nlp/DeepMoji/Deepmoji.vue'
-import Tokenization from './components/nlp/DeepMoji/Tokenization.vue'
 
-import c_Intro from 'raw-loader!./assets/content/1IntroBody.html';
-import c_DeepMoji from 'raw-loader!./assets/content/2DeepMojiExplanation.html';
-import c_Tokenization from 'raw-loader!./assets/content/3Tokenization.html';
-import c_Embedding from 'raw-loader!./assets/content/4Embedding.html';
-import c_LSTM from 'raw-loader!./assets/content/5LSTMs.html';
-
+import DeepMoji from './components/DeepMoji.vue'
+import Home from './components/Home.vue'
 
 export default {
   name: 'App',
+  computed: {
+    username() {
+      // We will see what `params` is shortly
+      return this.$route.params.username
+    }
+  },
   components: {
-    Equation,
-    Passage,
-    Deepmoji,
-    Tokenization
   },
   data() {
     return {
-    Content : [
-      c_Intro,
-      c_DeepMoji,
-      c_Tokenization,
-      c_Embedding,
-      c_LSTM
-    ]
     }
   },
   methods:{
-    addLabeledText(nlp){
-      var labeled_data = nlp.labeled
-      console.log(uniqueID('a'))
-      if (nlp.visualizer=='deepmoji'){
-        console.log("Bonk",labeled_data.phrases[0])
-      }
+    testFunc(){
+      this.$router.addRoute(  "deepmoji",{path : '/deepmoji', component:DeepMoji})
+      this.$router.addRoute(  "home",{path : '/', component:Home})
     },
-    getUniqueID(base_str){
-      return uniqueID(base_str+"-")
-    }
+    goBack() {
+      console.log(this.$router)
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
+    },
+  },
+  created: function(){
+    this.testFunc();
   }
+
 }
 </script>
 
