@@ -4,6 +4,7 @@
 <!--     <equation :latex = "'f=\\frac{b_i}{1+x}'"> </equation>
  -->
     <router-link to="/">Home</router-link>
+    <span>&#8226;</span>
     <router-link to="/deepmoji">Go to DeepMoji explanation (under construction)</router-link>
     <router-view>
 

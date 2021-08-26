@@ -16,7 +16,7 @@
      />
 
     <button type = "submit" class="btn btn__primary btn__lg">
-    Add
+    Run model 
     </button>
 
 
