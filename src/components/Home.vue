@@ -2,6 +2,7 @@
 <span>
   <passage :title="'Erick J Gomez\'s Machine (L)earning Log'" :body="Content[0]"></passage>
   <deepmoji></deepmoji>
+
 </span>
 </template>
 
@@ -10,6 +11,8 @@
 import uniqueID from 'lodash.uniqueid'
 import Passage from './Passage.vue'
 import Deepmoji from './nlp/DeepMoji/Deepmoji.vue'
+
+
 import c_Intro from 'raw-loader!./../assets/content/home/Introduction.html';
 
 export default{
