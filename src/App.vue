@@ -3,6 +3,7 @@
 
 <!--     <equation :latex = "'f=\\frac{b_i}{1+x}'"> </equation>
  -->
+     <h1>RWeMad.dev : An attempt at quantifying how mad we really are</h1>
     <router-link to="/">Home</router-link>
     <span>&#8226;</span>
     <router-link to="/deepmoji">Go to DeepMoji explanation (under construction)</router-link>
