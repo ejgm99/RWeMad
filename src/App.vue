@@ -3,13 +3,17 @@
 
 <!--     <equation :latex = "'f=\\frac{b_i}{1+x}'"> </equation>
  -->
-     <h1>RWeMad.dev : An attempt at quantifying how mad we really are</h1>
-    <router-link to="/">Home</router-link>
+
+     <h1>RWeMad.dev </h1>
+
+    <deep-moji></deep-moji>
+     <!-- <hello-twitter></hello-twitter> -->
+    <!-- <router-link to="/">Home</router-link>
     <span>&#8226;</span>
     <router-link to="/deepmoji">Go to DeepMoji explanation (under construction)</router-link>
     <router-view>
 
-    </router-view>
+    </router-view> -->
 
    </div>
 
@@ -17,36 +21,15 @@
 
 <script>
 
-import DeepMoji from './components/DeepMoji.vue'
-import Home from './components/Home.vue'
+import DeepMoji from './components/Home.vue'
+// import HelloTwitter from './components/twitter/HelloTwitter.vue'
 
 export default {
   name: 'App',
-  computed: {
-    username() {
-      // We will see what `params` is shortly
-      return this.$route.params.username
-    }
-  },
-  components: {
-  },
-  data() {
-    return {
-    }
-  },
-  methods:{
-    testFunc(){
-      this.$router.addRoute(  "deepmoji",{path : '/deepmoji', component:DeepMoji})
-      this.$router.addRoute(  "home",{path : '/', component:Home})
-    },
-    goBack() {
-      console.log(this.$router)
-      window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
-    },
-  },
-  created: function(){
-    this.testFunc();
-  }
+  components:{
+    // HelloTwitter,
+    DeepMoji
+}
 
 }
 </script>
